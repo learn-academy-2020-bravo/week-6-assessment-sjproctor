@@ -10,8 +10,17 @@ var people = [
 ]
 // Expected output example: "Ford Prefect is a hitchhiker." "Zaphod Beeblebrox is a president of the galaxy." "Arthus Dent is a radio employee."
 
-
-
+const describer = (array) => {
+  let sentences = array.map(person => {
+    let eachName = person.name.split(" ")
+    let capitalized = eachName.map(name => {
+      return name.charAt(0).toUpperCase() + name.substring(1)
+    }).join(" ")
+    return `${capitalized} is a ${person.occupation}.`
+  })
+  return sentences.join(" ")
+}
+console.log(describer(people))
 
 
 // --------------------2) Create a function that takes in a mixed data array and returns an array of only the remainder of the numbers when divided by 3.
@@ -21,7 +30,12 @@ var testingArray1 = [23, "Heyyyy!", 45, -9, 0, "Yo", false]
 var testingArray2 = [5, "Hola", 43, -34, "greetings", true]
 // Expected output: [ 2, 1, -1 ]
 
-
+const remainders = (array) => {
+  let filterNums = array.filter(value => typeof value === "number")
+  return filterNums.map(value => value%3)
+}
+console.log(remainders(testingArray1))
+console.log(remainders(testingArray2))
 
 
 
@@ -30,3 +44,11 @@ var testingArray2 = [5, "Hola", 43, -34, "greetings", true]
 var testingArray3 = [3, 7, "hi", 10, 3, "hello", 4, "hi"]
 var testingArray4 = [7, "hi", 3, 1, "hi", 4, "hello", 4, 7]
 // Expected output: [ 3, 7, "hi", 10, "hello", 4, 1 ]
+
+
+
+const deDup = (arr1, arr2) => {
+  let arr3 = arr1.concat(arr2)
+  return [...new Set(arr3)]
+}
+console.log(deDup(testingArray3, testingArray4))
